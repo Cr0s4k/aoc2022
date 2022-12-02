@@ -18,7 +18,7 @@ rules = {
   'Y' => {
     'A' => 6,
     'B' => 3,
-    'C'=> 0
+    'C' => 0
   },
   'Z' => {
     'A' => 0,
@@ -33,14 +33,14 @@ def calc_points(play, rules, shape_points)
 end
 
 def part1(input, rules, shape_points)
-  part1 = input
-  .split("\n")
-  .map do |x|
+  input
+    .split("\n")
+    .map do |x|
     x
-      .split(" ")
-      .then do |y| calc_points(y, rules, shape_points) end
+      .split(' ')
+      .then { |y| calc_points(y, rules, shape_points) }
   end
-  .sum
+    .sum
 end
 
 p part1(input, rules, shape_points)
@@ -54,7 +54,7 @@ rules = {
   'Y' => {
     'A' => 'X',
     'B' => 'Y',
-    'C'=> 'Z'
+    'C' => 'Z'
   },
   'Z' => {
     'A' => 'Y',
@@ -76,14 +76,14 @@ def calc_points2(play, rules, shape_points, result_points)
 end
 
 def part2(input, rules, shape_points, result_points)
-  part1 = input
-  .split("\n")
-  .map do |x|
+  input
+    .split("\n")
+    .map do |x|
     x
-      .split(" ")
-      .then do |y| calc_points2(y, rules, shape_points, result_points) end
+      .split(' ')
+      .then { |y| calc_points2(y, rules, shape_points, result_points) }
   end
-  .sum
+    .sum
 end
 
 p part2(input, rules, shape_points, result_points)
