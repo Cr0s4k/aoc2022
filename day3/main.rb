@@ -1,18 +1,18 @@
 # frozen_string_literal: true
+
 require 'set'
 
 input = File.read('in.txt')
 
 def make_hash(str)
   str
-    .split("")
-    .reduce({}) { |acc, x|
+    .split('')
+    .each_with_object({}) do |x, acc|
       acc[x] = true
-      acc
-    }
+    end
 end
 
-def is_upper?(char)
+def upper?(char)
   char.ord >= 65 && char.ord <= 90
 end
 
@@ -21,10 +21,10 @@ def get_priority(rucksack)
   hash = make_hash(rucksack[0..middle - 1])
 
   char = rucksack[middle..]
-    .split("")
-    .find {|x| hash[x]}
+    .split('')
+    .find { |x| hash[x] }
 
-  return char.ord - 38 if is_upper?(char)
+  return char.ord - 38 if upper?(char)
 
   char.ord - 96
 end
@@ -43,10 +43,10 @@ def get_priority_from_group(group)
   hash2 = make_hash(group[1])
 
   char = group[2]
-    .split("")
-    .find {|x| hash1[x] && hash2[x]}
+    .split('')
+    .find { |x| hash1[x] && hash2[x] }
 
-  return char.ord - 38 if is_upper?(char)
+  return char.ord - 38 if upper?(char)
 
   char.ord - 96
 end
@@ -54,7 +54,7 @@ end
 p2 = input
   .split("\n")
   .each_slice(3)
-  .to_a()
+  .to_a
   .map { |x| get_priority_from_group(x) }
   .sum
 
