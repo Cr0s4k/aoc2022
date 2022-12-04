@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-input = File.read('in.txt')
+input = File.read("in.txt")
 
 # part 1
 
@@ -9,7 +7,8 @@ part1 = input
   .map do |x|
     x
       .split("\n")
-      .map { |y| Integer(y, exception: false) }
+      .reject { |x| x == "" }
+      .map { |y| y.to_i }
       .sum
   end
   .max
@@ -23,11 +22,12 @@ part2 = input
   .map do |x|
     x
       .split("\n")
-      .map { |y| Integer(y, exception: false) }
+      .reject { |x| x == "" }
+      .map { |y| y.to_i }
       .sum
   end
   .sort
-  .slice(-3, 3)
+  .[-3, 3]
   .sum
-
+  
 p part2
