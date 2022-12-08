@@ -7,9 +7,8 @@ part1 = input
   .map do |x|
     x
       .split("\n")
-      .reject { |x| x == "" }
-      .map { |y| y.to_i }
-      .sum
+      .reject { |y| y == "" }
+      .sum(&.to_i)
   end
   .max
 
@@ -22,12 +21,11 @@ part2 = input
   .map do |x|
     x
       .split("\n")
-      .reject { |x| x == "" }
-      .map { |y| y.to_i }
-      .sum
+      .reject { |y| y == "" }
+      .sum(&.to_i)
   end
-  .sort
+  .sort!
   .[-3, 3]
   .sum
-  
+
 p part2

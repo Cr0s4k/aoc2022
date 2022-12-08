@@ -37,12 +37,11 @@ def part1(input, rules, shape_points)
   input
     .split("\n")
     .reject { |x| x == "" }
-    .map do |x|
-    x
-      .split(" ")
-      .try { |y| calc_points(y, rules, shape_points) }
-  end
-    .sum
+    .sum do |x|
+      x
+        .split(" ")
+        .try { |y| calc_points(y, rules, shape_points) }
+    end
 end
 
 p part1(input, rules, shape_points)
@@ -82,12 +81,11 @@ def part2(input, rules, shape_points, result_points)
   input
     .split("\n")
     .reject { |x| x == "" }
-    .map do |x|
-    x
-      .split(" ")
-      .try { |y| calc_points2(y, rules, shape_points, result_points) }
-  end
-    .sum
+    .sum do |x|
+      x
+        .split(" ")
+        .try { |y| calc_points2(y, rules, shape_points, result_points) }
+    end
 end
 
 p part2(input, rules, shape_points, result_points)

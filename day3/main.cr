@@ -32,8 +32,7 @@ end
 p1 = input
   .split("\n")
   .reject { |x| x == "" }
-  .map { |x| get_priority(x) }
-  .sum
+  .sum { |x| get_priority(x) }
 
 p p1
 
@@ -48,7 +47,7 @@ def get_priority_from_group(group)
     .find { |x| hash1.fetch(x, nil) && hash2.fetch(x, nil) }
 
   raise "error" if !letter
-  
+
   char = letter.char_at(0)
 
   return char.ord - 38 if upper?(char)
@@ -61,7 +60,6 @@ p2 = input
   .reject { |x| x == ""}
   .each_slice(3)
   .to_a
-  .map { |x| get_priority_from_group(x) }
-  .sum
+  .sum { |x| get_priority_from_group(x) }
 
 p p2

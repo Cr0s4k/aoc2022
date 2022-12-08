@@ -2,7 +2,7 @@ input = File.read("./in.txt")
 
 record Instruction, quantity : Int32, from : Int32, to : Int32
 
-def parseInstructions(str : String) : Array(Instruction)
+def parse_instructions(str : String) : Array(Instruction)
   str
     .split("\n")
     .map { |x|
@@ -27,15 +27,15 @@ def parse_crates(str : String) : Array(Array(String))
 
   raise("error") if !arr_size
 
-  stacks = [] of Array(String) 
+  stacks = [] of Array(String)
   arr_size.to_i.times {
     stacks.push([] of String)
   }
 
   lines[0..-2]
     .reverse
-    .reduce(stacks) { |acc, x|
-      x
+    .reduce(stacks) { |acc, line|
+      line
         .split("")
         .each_slice(4)
         .map { |x| x[1] }
@@ -50,7 +50,7 @@ end
 def solve1(input) : String
   splited_input = input.split("\n\n")
 
-  instructions = parseInstructions(splited_input[1])
+  instructions = parse_instructions(splited_input[1])
   crates = parse_crates(splited_input[0])
 
   instructions.each { |x|
@@ -60,7 +60,7 @@ def solve1(input) : String
     }
   }
 
-  crates.map { |x| x.last }.join("")
+  crates.map(&.last).join("")
 end
 
 p1 = solve1(input)
@@ -70,7 +70,7 @@ p p1
 def solve2(input) : String
   splited_input = input.split("\n\n")
 
-  instructions = parseInstructions(splited_input[1])
+  instructions = parse_instructions(splited_input[1])
   crates = parse_crates(splited_input[0])
 
   instructions.each { |x|
@@ -79,7 +79,7 @@ def solve2(input) : String
     crates[x.from] = crates[x.from][0..-x.quantity - 1]
   }
 
-  crates.map { |x| x.last }.join("")
+  crates.map(&.last).join("")
 end
 
 p2 = solve2(input)

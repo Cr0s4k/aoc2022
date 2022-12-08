@@ -19,14 +19,13 @@ def get_pairs(x : String) : Tuple(Tuple(Int32, Int32), Tuple(Int32, Int32))
   pair2 = ranges[1].split("-")
   pair2 = {pair2[0].to_i, pair2[1].to_i}
 
-  {pair1, pair2}  
+  {pair1, pair2}
 end
 
 p1 = input
   .split("\n")
   .reject { |x| x == "" }
-  .select { |x| get_pairs(x).try { |y| overlap?(y[0], y[1])} }
-  .size
+  .count { |x| get_pairs(x).try { |y| overlap?(y[0], y[1])} }
 
 p p1
 
@@ -39,7 +38,6 @@ end
 p2 = input
   .split("\n")
   .reject { |x| x == "" }
-  .select { |x| get_pairs(x).try { |y| overlap_at_all?(y[0], y[1])} }
-  .size
+  .count { |x| get_pairs(x).try { |y| overlap_at_all?(y[0], y[1])} }
 
 p p2
